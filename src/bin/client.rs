@@ -8,10 +8,10 @@ fn main() -> std::io::Result<()> {
 
     let mut stream = TcpStream::connect("127.0.0.1:9583")?;
     //let mut buffer: [u8; 12] = [0; 12];
-    let mut buffer2: Vec<u8> = vec![];
+    let mut str: String = Default::default();
     stream.write(message.as_bytes())?;
 
-    stream.read(&mut buffer2)?;
-    println!("responce from server {}", String::from_utf8_lossy(&buffer2));
+    stream.read_to_string(&mut str)?;
+    println!("responce from server {}", str);
     Ok(())
 }
